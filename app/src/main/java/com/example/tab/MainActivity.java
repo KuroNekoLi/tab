@@ -1,20 +1,25 @@
 package com.example.tab;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.leanback.tab.LeanbackTabLayout;
 import androidx.leanback.tab.LeanbackViewPager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
-    private LeanbackTabLayout tabLayout;
-    private LeanbackViewPager viewPager;
+    LeanbackTabLayout tabLayout;
+    LeanbackViewPager viewPager;
     private final HashMap<String, List<Student>> schoolStudents = new HashMap<>();
 
     @Override
@@ -44,6 +49,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
         tabLayout.setupWithViewPager(viewPager);
     }
 }

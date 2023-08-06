@@ -1,5 +1,6 @@
 package com.example.tab;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             super(itemView);
             studentName = itemView.findViewById(R.id.student_name);
             studentId = itemView.findViewById(R.id.student_id);
+
+            studentName.setOnFocusChangeListener((view, hasFocus) -> {
+                if (hasFocus) {
+                    studentName.setTextColor(Color.BLUE);
+                } else {
+                    studentName.setTextColor(Color.BLACK);  // 可以调整为你原来的颜色
+                }
+            });
         }
     }
 }
