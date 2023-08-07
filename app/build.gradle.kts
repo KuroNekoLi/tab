@@ -8,11 +8,10 @@ android {
 
     defaultConfig {
         applicationId = "com.example.tab"
-        minSdkPreview = "UpsideDownCake"
-        targetSdkPreview = "UpsideDownCake"
+        minSdkPreview = 29.toString()
+        targetSdkPreview = 29.toString()
         versionCode = 1
         versionName = "1.0"
-
     }
 
     buildTypes {

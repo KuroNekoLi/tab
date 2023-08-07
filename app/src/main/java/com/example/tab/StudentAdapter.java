@@ -50,7 +50,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 if (hasFocus) {
                     studentName.setTextColor(Color.BLUE);
                 } else {
-                    studentName.setTextColor(Color.BLACK);  // 可以调整为你原来的颜色
+                    studentName.setTextColor(Color.BLACK);
                 }
             });
         }

@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,8 +21,6 @@ import java.util.List;
 public class StudentFragment extends Fragment {
     private static final String STUDENTS_LIST = "students_list";
     private List<Student> students;
-    private ViewPager viewPager;
-
 
     public static StudentFragment newInstance(List<Student> students) {
         StudentFragment fragment = new StudentFragment();
@@ -46,8 +45,20 @@ public class StudentFragment extends Fragment {
         recyclerView.setAdapter(new StudentAdapter(students));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setFocusable(true);
-        recyclerView.requestFocus();
-
+        recyclerView.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View view, int i, KeyEvent keyEvent )
+            {
+                if ( keyEvent.getAction() == KeyEvent.ACTION_DOWN ){
+                    if ( i == KeyEvent.KEYCODE_DPAD_RIGHT ){
+                        Toast.makeText( getContext(), "right", Toast.LENGTH_SHORT ).show();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        } );
         return view;
     }
 }
