@@ -2,6 +2,7 @@ package com.example.tab;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.leanback.tab.LeanbackTabLayout;
 import androidx.leanback.tab.LeanbackViewPager;
 import androidx.recyclerview.widget.RecyclerView;

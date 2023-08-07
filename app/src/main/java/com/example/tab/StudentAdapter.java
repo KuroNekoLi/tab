@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,9 +28,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
-        Student student = students.get(position);
-        holder.studentName.setText(student.getName());
-        holder.studentId.setText(student.getId());
+        holder.bind( position );
     }
 
     @Override
@@ -45,8 +44,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             super(itemView);
             studentName = itemView.findViewById(R.id.student_name);
             studentId = itemView.findViewById(R.id.student_id);
-
-            studentName.setOnFocusChangeListener((view, hasFocus) -> {
+        }
+        void bind(int position){
+            Student student = students.get(position);
+            studentName.setText(student.getName());
+            itemView.setOnClickListener( view -> Toast.makeText( view.getContext(), "item clicked", Toast.LENGTH_SHORT ).show() );
+            itemView.setOnFocusChangeListener((view, hasFocus) -> {
                 if (hasFocus) {
                     studentName.setTextColor(Color.BLUE);
                 } else {
