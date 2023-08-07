@@ -1,6 +1,7 @@
 package com.example.tab;
 
 import android.graphics.Color;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +15,13 @@ import java.util.List;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
     private List<Student> students;
+    private Runnable onKeyRight;
+    private Runnable onKeyLeft;
 
-    public StudentAdapter(List<Student> students) {
+    public StudentAdapter(List<Student> students,Runnable onKeyRight,Runnable onKeyLeft) {
         this.students = students;
+        this.onKeyRight = onKeyRight;
+        this.onKeyLeft = onKeyLeft;
     }
 
     @NonNull
@@ -56,6 +61,21 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                     studentName.setTextColor(Color.BLACK);
                 }
             });
+            itemView.setOnKeyListener( new View.OnKeyListener()
+            {
+                @Override
+                public boolean onKey( View view, int i, KeyEvent keyEvent )
+                {
+                    if ( keyEvent.getAction() == KeyEvent.ACTION_DOWN ){
+                        if ( i == KeyEvent.KEYCODE_DPAD_RIGHT ){
+                            onKeyRight.run();
+                        }else if ( i == KeyEvent.KEYCODE_DPAD_LEFT ){
+                            onKeyLeft.run();
+                        }
+                    }
+                    return false;
+                }
+            } );
         }
     }
 }

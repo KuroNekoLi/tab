@@ -16,11 +16,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity{
 
-    LeanbackTabLayout tabLayout;
-    LeanbackViewPager viewPager;
+    private LeanbackTabLayout tabLayout;
+    private LeanbackViewPager viewPager;
     private final HashMap<String, List<Student>> schoolStudents = new HashMap<>();
 
     @Override
@@ -51,5 +52,38 @@ public class MainActivity extends AppCompatActivity{
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener()
+        {
+            @Override
+            public void onPageScrolled( int position, float positionOffset, int positionOffsetPixels )
+            {
+
+            }
+
+            @Override
+            public void onPageSelected( int position )
+            {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged( int state )
+            {
+
+            }
+        } );
+    }
+
+    public void setIndex(int index) {
+        if (viewPager.getAdapter() != null){
+            int tabCount = viewPager.getAdapter().getCount();
+            if(index >= 0 && index < tabCount) {
+                viewPager.setCurrentItem(index);
+            }
+        }
+    }
+
+    public int getIndex(){
+        return viewPager.getCurrentItem();
     }
 }
